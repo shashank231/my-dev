@@ -1,0 +1,11 @@
+{
+  "name": "my-dev",
+  "version": "1.0.0",
+  "description": "another ecommerce app with MERN",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shashank Kaushik",
+  "license": "MIT"
+}
