@@ -12,20 +12,24 @@ dotenv.config();
 
 connectDB();
 
+// just a seperate script to add data in mongoob
+
 const importData = async () => {
   try {
+    // first deleteEverything
+    // await as every mongoose method returns a promise
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
 
+    // add Users
     const createdUsers = await User.insertMany(users);
 
+    // add products, each product should have admin as user as only he can edit it
     const adminUser = createdUsers[0]._id;
-
     const sampleProducts = products.map((product) => {
       return { ...product, user: adminUser };
     });
-
     await Product.insertMany(sampleProducts);
 
     console.log('Data Imported!'.green.inverse);
