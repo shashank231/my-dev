@@ -45,7 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    generateToken(res, user._id);
+    generateToken(res, user._id);  // generate token to also login(auth) user as they registers 
 
     res.status(201).json({
       _id: user._id,
@@ -90,6 +90,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/profile
 // @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
+  // as we've set  req.user = await User.findById(decoded.userId).select('-password'); in authMiddleware
   const user = await User.findById(req.user._id);
 
   if (user) {

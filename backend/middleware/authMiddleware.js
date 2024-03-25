@@ -12,6 +12,7 @@ const protect = asyncHandler(async (req, res, next) => {    // always call next(
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      // set user on req after veryfying
       req.user = await User.findById(decoded.userId).select('-password');  // don't want password from db
       next();
     } catch (error) {

@@ -33,13 +33,15 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 };
 
 // Encrypt password using bcrypt
+// pre to do something before saving in db
+// similar post to do somethingafter saving in db
 userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) {
+  if (!this.isModified('password')) {  // if pwd is not modified so we won't encrypt again right, so just next()
     next();
   }
 
   const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  this.password = await bcrypt.hash(this.password, salt);  // encrypt pwd before saving
 });
 
 const User = mongoose.model('User', userSchema);
