@@ -1,7 +1,7 @@
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';   // cookie parser
 dotenv.config();
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
@@ -16,9 +16,11 @@ connectDB();
 
 const app = express();
 
+// Body Parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+// Cookie parser middleware
+app.use(cookieParser());      // add cookie parser middleware, allow access req.cookies
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
