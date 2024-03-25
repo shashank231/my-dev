@@ -14,7 +14,7 @@ import { protect, admin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.route('/').post(registerUser).get(protect, admin, getUsers);
+router.route('/').post(registerUser).get(protect, admin, getUsers); // adding protect and admin middleware before calling getUsers
 router.post('/auth', authUser);
 router.post('/logout', logoutUser);
 router
