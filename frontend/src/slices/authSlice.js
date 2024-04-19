@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// set if its in local storage otherwise null
 const initialState = {
   userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
@@ -12,7 +13,8 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       state.userInfo = action.payload;
-      localStorage.setItem('userInfo', JSON.stringify(action.payload));
+      localStorage.setItem('userInfo', JSON.stringify(action.payload)); // Match redux state with local storage
+      // not storing jwt token in local storage
     },
     logout: (state, action) => {
       state.userInfo = null;
