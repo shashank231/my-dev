@@ -16,8 +16,8 @@ connectDB();
 
 const app = express();
 
-// Body Parser middleware
 app.use(express.json());
+// Body Parser middleware
 app.use(express.urlencoded({ extended: true }));
 // Cookie parser middleware
 app.use(cookieParser());      // add cookie parser middleware, allow access req.cookies
