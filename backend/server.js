@@ -9,6 +9,7 @@ import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+import morgan from 'morgan';
 
 const port = process.env.PORT || 5000;
 
@@ -16,6 +17,8 @@ connectDB();
 
 const app = express();
 
+// Setup morgan for HTTP request logging
+app.use(morgan('combined'));
 app.use(express.json());
 // Body Parser middleware
 app.use(express.urlencoded({ extended: true }));
